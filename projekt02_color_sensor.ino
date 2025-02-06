@@ -11,7 +11,6 @@
 Servo servo_door; // Servo object 1
 Servo direction_servo; // Servo object 2
 Servo release_servo; // Servo object 3
-
 const int servo_door_pin = 10;
 const int direction_servo_pin = 9;
 const int release_servo_pin = 11;
@@ -47,6 +46,7 @@ void loop() {
   if (digitalRead(button_pin)){
     detect_color();
     servo_sort(); 
+    delay(500);
   }
 }
 /*
@@ -92,10 +92,9 @@ void servo_open(){
 */
 void servo_reset(){
   release_servo.write(0);
-  delay(2000);
+  delay(1000);
   direction_servo.write(130);
   delay(1000);
-  servo_opne();
 }
 /*
 * Description: directs two servo motors to move and sort objects depending on the detected color
@@ -103,28 +102,34 @@ void servo_reset(){
 * Returns: Void 
 */
 void servo_sort(){
-  servo_reset();
   if (color_result == 0) {
-    delay(500);
-    direction_servo.write(270);
+    servo_open();
     delay(1000);
+    direction_servo.write(270);
     Serial.println(" - RED detected!");
+    delay(500);
     release_servo.write(180);
+    delay(1000);
   }
   if (color_result == 1){
-    delay(500);
-    direction_servo.write(90);
+    servo_open();
     delay(1000);
+    direction_servo.write(90);
     Serial.println(" - GREEN detected!");
+    delay(500);
     release_servo.write(180);
+    delay(1000);
   }
   if (color_result == 2){
+    servo_open();
+    delay(500);
     direction_servo.write(180);
-    delay(1000);
     Serial.println(" - BLUE detected!");
     release_servo.write(180);
+    delay(1000);
   }
-    delay(800);
+  delay(500);
+  servo_reset();
 
 }
 
