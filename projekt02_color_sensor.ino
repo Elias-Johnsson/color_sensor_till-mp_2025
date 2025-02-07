@@ -20,12 +20,12 @@ const int S1 = 5;
 const int S2 = 6;
 const int S3 = 7;
 const int sensorOut = 8;
-int color_val_array[3];
-int frequency = 0;
-int red_index = 0;
-int green_index = 1;
-int blue_index = 2;
-int color_result;
+int color_val_array[3]; // List of color values
+int frequency = 0; // Resulting frequency from color sensor
+int red_index = 0; // red color index for reference
+int green_index = 1; // green color index for reference
+int blue_index = 2;// blue color index for reference
+int color_result; // the color that is detected
 
 void setup() {
   pinMode(S0, OUTPUT);
